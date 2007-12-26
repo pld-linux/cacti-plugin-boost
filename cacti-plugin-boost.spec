@@ -20,8 +20,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Plugin for Cacti - This plugin boosts Cacti performance especially for Large Sites. 
 
-%description -l pl.UTF-8
-Wtyczka do Cacti - 
+#%description -l pl.UTF-8
+#Wtyczka do Cacti - 
 
 %prep
 %setup -q -c
@@ -29,7 +29,7 @@ Wtyczka do Cacti -
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{webcactipluginroot}
-cp -aRf * $RPM_BUILD_ROOT%{webcactipluginroot}
+cp -a * $RPM_BUILD_ROOT%{webcactipluginroot}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
