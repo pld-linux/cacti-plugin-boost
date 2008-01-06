@@ -18,10 +18,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		webcactipluginroot /usr/share/cacti/plugins/%{namesrc}
 
 %description
-Plugin for Cacti - This plugin boosts Cacti performance especially for Large Sites. 
+Cacti plugin that boosts Cacti performance especially for large sites.
 
-#%description -l pl.UTF-8
-#Wtyczka do Cacti - 
+%description -l pl.UTF-8
+Wtyczka Cacti zwiększająca jego wydajność, szczególnie w przypadku
+dużych serwisów.
 
 %prep
 %setup -q -c
