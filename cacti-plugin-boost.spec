@@ -1,4 +1,4 @@
-%define		namesrc	boost	
+%define		plugin boost
 %include	/usr/lib/rpm/macros.perl
 Summary:	Plugin for Cacti - Boost
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
@@ -7,7 +7,7 @@ Version:	1.7
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://mirror.cactiusers.org/downloads/plugins/%{namesrc}-%{version}.zip
+Source0:	http://mirror.cactiusers.org/downloads/plugins/%{plugin}-%{version}.zip
 # Source0-md5:	49c5989cc421781fb8e983d70ba2bcac
 URL:		http://www.cactiusers.org/
 BuildRequires:	rpm-perlprov
@@ -15,7 +15,8 @@ Requires:	cacti
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		webcactipluginroot /usr/share/cacti/plugins/%{namesrc}
+%define		cactidir		/usr/share/cacti
+%define		plugindir		%{cactidir}/plugins/%{plugin}
 
 %description
 Cacti plugin that boosts Cacti performance especially for large sites.
@@ -29,13 +30,13 @@ dużych serwisów.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{webcactipluginroot}
-cp -a * $RPM_BUILD_ROOT%{webcactipluginroot}
+install -d $RPM_BUILD_ROOT%{plugindir}
+cp -a . $RPM_BUILD_ROOT%{plugindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README 
-%{webcactipluginroot}
+%doc LICENSE README
+%{plugindir}
