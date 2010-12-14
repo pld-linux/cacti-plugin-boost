@@ -1,0 +1,11 @@
+--- boost/setup.php~	2010-12-14 08:09:07.000000000 +0200
++++ boost/setup.php	2010-12-14 08:28:03.991535003 +0200
+@@ -1960,7 +1960,7 @@
+ 			"description" => "Specify the location where Boost should place your image files.  These files will be automatically purged by the poller when they expire.",
+ 			"method" => "textbox",
+ 			"max_length" => "255",
+-			"default" => ""
++			"default" => "/var/cache/cacti/boost"
+ 		),
+ 		"boost_process_header" => array(
+ 			"friendly_name" => "Process Interlocking",

@@ -6,20 +6,22 @@ Summary:	Plugin for Cacti - Boost
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
 Name:		cacti-plugin-boost
 Version:	4.3
-Release:	0.1
+Release:	0.3
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://docs.cacti.net/_media/plugin:boost-v%{version}-1.tgz
 # Source0-md5:	f4df111245fd9c11c5496b36e7971ef6
+Patch0:		paths.patch
 URL:		http://docs.cacti.net/plugin:boost
 BuildRequires:	rpmbuild(macros) >= 1.553
-Requires:	cacti >= 0.8.7
+Requires:	cacti >= 0.8.7g-6
 Provides:	cacti(pia) >= 2.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		cactidir		/usr/share/cacti
 %define		plugindir		%{cactidir}/plugins/%{plugin}
+%define		cachedir		/var/cache/cacti/%{plugin}
 
 %description
 Cacti plugin that boosts Cacti performance especially for large sites.
@@ -47,12 +49,13 @@ dużych serwisów.
 
 %prep
 %setup -qc
-mv boost/* .
+mv boost/* .; rmdir boost
 %undos -f php
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{plugindir}
+install -d $RPM_BUILD_ROOT{%{plugindir},%{cachedir}}
 cp -a . $RPM_BUILD_ROOT%{plugindir}
 %{__rm} $RPM_BUILD_ROOT%{plugindir}/{README,LICENSE}
 %{__rm} $RPM_BUILD_ROOT%{plugindir}/cacti_rrdsvc
@@ -64,3 +67,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE README
 %{plugindir}
+%attr(730,root,http) %dir %{cachedir}
