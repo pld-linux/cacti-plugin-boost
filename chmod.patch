@@ -1,0 +1,15 @@
+chmod 666 is invalid, it should be octal: 0666
+
+but i'd rather not chmod at all, if webserver can write it, so can it read it.
+
+really, it should be configurable (perhaps take some cacti var?)
+--- cacti-plugin-boost-4.3/setup.php~	2010-12-14 09:15:05.048058428 +0200
++++ cacti-plugin-boost-4.3/setup.php	2010-12-14 23:38:26.442892330 +0200
+@@ -929,7 +929,6 @@
+ 						if ($fileptr = fopen($cache_file, "w")) {
+ 							fwrite($fileptr, $data["output"], strlen($data["output"]));
+ 							fclose($fileptr);
+-							chmod($cache_file, 666);
+ 						}
+ 					}
+ 				}else{

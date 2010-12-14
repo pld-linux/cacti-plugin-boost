@@ -6,12 +6,13 @@ Summary:	Plugin for Cacti - Boost
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
 Name:		cacti-plugin-boost
 Version:	4.3
-Release:	0.4
+Release:	0.5
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://docs.cacti.net/_media/plugin:boost-v%{version}-1.tgz
 # Source0-md5:	f4df111245fd9c11c5496b36e7971ef6
 Patch0:		paths.patch
+Patch1:		chmod.patch
 URL:		http://docs.cacti.net/plugin:boost
 BuildRequires:	rpmbuild(macros) >= 1.553
 Requires:	cacti >= 0.8.7g-6
@@ -52,6 +53,7 @@ dużych serwisów.
 mv boost/* .; rmdir boost
 %undos -f php
 %patch0 -p1
+%patch1 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
