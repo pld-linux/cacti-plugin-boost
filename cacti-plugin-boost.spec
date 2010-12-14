@@ -6,7 +6,7 @@ Summary:	Plugin for Cacti - Boost
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
 Name:		cacti-plugin-boost
 Version:	4.3
-Release:	0.3
+Release:	0.4
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://docs.cacti.net/_media/plugin:boost-v%{version}-1.tgz
@@ -65,6 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README
+%doc README
 %{plugindir}
-%attr(730,root,http) %dir %{cachedir}
+%attr(770,root,http) %dir %{cachedir}
