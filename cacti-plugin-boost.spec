@@ -2,21 +2,27 @@
 # - sync pl
 # - init.d processes
 %define		plugin boost
-Summary:	Plugin for Cacti - Boost
+%define		php_min_version 5.2.0
+%include	/usr/lib/rpm/macros.php
+Summary:	Large Site Performance Booster for Cacti
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
-Name:		cacti-plugin-boost
-Version:	4.3
-Release:	0.5
+Name:		cacti-plugin-%{plugin}
+Version:	5.1
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://docs.cacti.net/_media/plugin:boost-v%{version}-1.tgz
-# Source0-md5:	f4df111245fd9c11c5496b36e7971ef6
+# Source0-md5:	31bda9b46d933e61bdcd77243928c89c
 Patch0:		paths.patch
 Patch1:		chmod.patch
 URL:		http://docs.cacti.net/plugin:boost
 BuildRequires:	rpmbuild(macros) >= 1.553
 Requires:	cacti >= 0.8.7g-6
-Provides:	cacti(pia) >= 2.8
+Requires:	cacti(pia) >= 2.8
+Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-date
+Requires:	php-pcre
+Requires:	php-session
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,17 +56,21 @@ dużych serwisów.
 
 %prep
 %setup -qc
-mv boost/* .; rmdir boost
 %undos -f php
+cd %{plugin}
 %patch0 -p1
 %patch1 -p1
+cd -
+
+mv %{plugin}/{README,LICENSE,cacti_rrdsvc} .
+
+# cleanup backups after patching
+find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{plugindir},%{cachedir}}
-cp -a . $RPM_BUILD_ROOT%{plugindir}
-%{__rm} $RPM_BUILD_ROOT%{plugindir}/{README,LICENSE}
-%{__rm} $RPM_BUILD_ROOT%{plugindir}/cacti_rrdsvc
+cp -a %{plugin}/* $RPM_BUILD_ROOT%{plugindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
