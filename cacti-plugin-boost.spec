@@ -8,7 +8,7 @@ Summary:	Large Site Performance Booster for Cacti
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
 Name:		cacti-plugin-%{plugin}
 Version:	5.1
-Release:	6
+Release:	7
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://docs.cacti.net/_media/plugin:boost-v%{version}-1.tgz
@@ -22,7 +22,7 @@ Requires:	cacti(pia) >= 2.8
 Requires:	php(core) >= %{php_min_version}
 Requires:	php(pcre)
 Requires:	php(session)
-Requires:	php-date
+Requires:	php(date)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
