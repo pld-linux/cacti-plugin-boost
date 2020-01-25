@@ -3,7 +3,6 @@
 # - init.d processes
 %define		plugin boost
 %define		php_min_version 5.2.0
-%include	/usr/lib/rpm/macros.php
 Summary:	Large Site Performance Booster for Cacti
 Summary(pl.UTF-8):	Wtyczka do Cacti - Boost
 Name:		cacti-plugin-%{plugin}
